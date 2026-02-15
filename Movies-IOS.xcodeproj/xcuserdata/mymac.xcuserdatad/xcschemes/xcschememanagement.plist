@@ -7,7 +7,25 @@
 		<key>Movies-IOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>8</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>1F3597B32F42464B00268D13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F3597C32F42464E00268D13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F3597CD2F42464E00268D13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

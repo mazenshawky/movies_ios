@@ -1,0 +1,37 @@
+PODS:
+  - Flutter (1.0.0)
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
+    - integration_test
+    - sqflite_darwin
+  - integration_test (0.0.1):
+    - Flutter
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - Flutter (from `../movies_module/.ios/Flutter`)
+  - FlutterPluginRegistrant (from `../movies_module/.ios/Flutter/FlutterPluginRegistrant`)
+  - integration_test (from `../movies_module/.ios/.symlinks/plugins/integration_test/ios`)
+  - sqflite_darwin (from `../movies_module/.ios/.symlinks/plugins/sqflite_darwin/darwin`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: "../movies_module/.ios/Flutter"
+  FlutterPluginRegistrant:
+    :path: "../movies_module/.ios/Flutter/FlutterPluginRegistrant"
+  integration_test:
+    :path: "../movies_module/.ios/.symlinks/plugins/integration_test/ios"
+  sqflite_darwin:
+    :path: "../movies_module/.ios/.symlinks/plugins/sqflite_darwin/darwin"
+
+SPEC CHECKSUMS:
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  FlutterPluginRegistrant: 0a514c7805fd952f37b5b87a8e7555d5bc5acc10
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+  sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
+
+PODFILE CHECKSUM: cb42ce1f80b95823a7d983f2c0e7f72c3fe4aa4b
+
+COCOAPODS: 1.16.2
