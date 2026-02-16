@@ -24,4 +24,9 @@ end
 
 post_install do |installer|
   flutter_post_install(installer) if defined?(flutter_post_install)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
 end

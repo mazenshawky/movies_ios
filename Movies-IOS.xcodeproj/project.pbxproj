@@ -44,9 +44,22 @@
 		F7E5A51354EA5FF750BF7209 /* Pods-Movies-IOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movies-IOSTests.release.xcconfig"; path = "Target Support Files/Pods-Movies-IOSTests/Pods-Movies-IOSTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AA000001AAAA000000000001 /* Exceptions for "Movies-IOS" folder in "Movies-IOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1F3597B32F42464B00268D13 /* Movies-IOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1F3597B62F42464B00268D13 /* Movies-IOS */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AA000001AAAA000000000001 /* Exceptions for "Movies-IOS" folder in "Movies-IOS" target */,
+			);
 			path = "Movies-IOS";
 			sourceTree = "<group>";
 		};
@@ -149,6 +162,7 @@
 				1F3597B22F42464B00268D13 /* Resources */,
 				554B3CE6F3A52F01C5EA6BC1 /* [CP] Embed Pods Frameworks */,
 				A26E5BC794DCDC94A0181F5F /* [CP-User] Embed Flutter Build movies_module Script */,
+				BB000001BBBB000000000001 /* Re-sign Embedded Frameworks */,
 			);
 			buildRules = (
 			);
@@ -396,6 +410,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Movies-IOS-Movies-IOSUITests/Pods-Movies-IOS-Movies-IOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		BB000001BBBB000000000001 /* Re-sign Embedded Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Re-sign Embedded Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find \"${CODESIGNING_FOLDER_PATH}/Frameworks\" -name '*.framework' -print0 | while IFS= read -r -d '' framework; do\n  codesign --force --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements --timestamp=none \"${framework}\"\ndone\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -568,7 +601,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Movies-IOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -599,7 +632,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Movies-IOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
