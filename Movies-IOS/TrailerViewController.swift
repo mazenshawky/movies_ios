@@ -7,7 +7,7 @@ import WebKit
 /// (which omits Referer headers and triggers Error 153), we load a local
 /// HTML file via `loadFileURL` that uses an iframe pointed at
 /// youtube-nocookie.com with proper referrer policy.
-class TrailerViewController: UIViewController {
+class TrailerViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
 
     private let youtubeKey: String
     private var webView: WKWebView!
@@ -35,6 +35,8 @@ class TrailerViewController: UIViewController {
         config.mediaTypesRequiringUserActionForPlayback = []
 
         webView = WKWebView(frame: .zero, configuration: config)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.isOpaque = false
         webView.backgroundColor = .black
         webView.scrollView.backgroundColor = .black
@@ -82,5 +84,47 @@ class TrailerViewController: UIViewController {
         // and YouTube doesn't reject the embed with Error 153.
         let baseURL = URL(string: "https://www.youtube-nocookie.com")
         webView.loadHTMLString(htmlString, baseURL: baseURL)
+    }
+
+    // MARK: - WKNavigationDelegate
+
+    /// Intercept navigation so the "Watch on YouTube" button works.
+    /// Allow iframe loads (`.other`) but open user-initiated links externally.
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.allow)
+            return
+        }
+
+        // Allow initial page load and iframe content
+        if navigationAction.navigationType == .other {
+            decisionHandler(.allow)
+            return
+        }
+
+        // User-initiated link (e.g. "Watch on YouTube") → open externally
+        UIApplication.shared.open(url)
+        decisionHandler(.cancel)
+    }
+
+    // MARK: - WKUIDelegate
+
+    /// Handle target="_blank" links from the YouTube iframe.
+    /// The "Watch on YouTube" button opens a new window — without this,
+    /// WKWebView silently ignores the tap.
+    func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+    ) -> WKWebView? {
+        if let url = navigationAction.request.url {
+            UIApplication.shared.open(url)
+        }
+        return nil
     }
 }
